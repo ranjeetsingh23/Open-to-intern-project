@@ -2,7 +2,7 @@ const collegeModel = require("../models/collegeModel.js");
 const internModel = require("../models/internModel.js");
 
 
-let validUrl = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+
 
 let validString = /^[ a-z ]+$/i; //To validate String using RegEx
 let validName = /\d/;
@@ -41,8 +41,6 @@ exports.createCollege = async function (req, res) {
                 return
             }
 
-            if (!validUrl.test(logoLink)) return res.status(400).send({ msg: "Invalid url" });
-
             //checking is there same name present inside database or not
             let allReadyExisted = await collegeModel.findOne({ name: collegeDetails.name })
             if (allReadyExisted) {
@@ -50,7 +48,7 @@ exports.createCollege = async function (req, res) {
             }
             //after clearing all the validation document will be created
             let createdCollege = await (await collegeModel.create(collegeDetails))
-           
+
             let college = {    //storing all data in an object
                 "name": createdCollege.name,
                 "fullName": createdCollege.fullName,
@@ -99,7 +97,7 @@ exports.getIntern = async function (req, res) {
             "interns": Intern
         }
 
-        res.status(200).send({ data: collegeAndAllIntern }) //sending data in response
+        return res.status(200).send({ status: true, data: collegeAndAllIntern }) //sending data in response
     } catch (error) {
         res.status(500).send({ status: false, message: error.message })
     }

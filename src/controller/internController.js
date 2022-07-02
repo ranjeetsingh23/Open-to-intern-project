@@ -73,7 +73,7 @@ exports.createIntern = async function (req, res) {
         }
     } catch (err) {
         console.log("This is the error:", err.message)
-        res.status(500).send({ msg: "Error", error: err.message })
+       return res.status(500).send({ msg: "Error", error: err.message })
     }
 }
 

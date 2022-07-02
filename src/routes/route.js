@@ -1,9 +1,9 @@
 
 const express = require('express');
 const router = express.Router();
-const { createCollege } = require("../controller/collegeController");
+const { createCollege,getIntern } = require("../controller/collegeController");
 const { createIntern } = require("../controller/internController");
-const { getIntern } = require("../controller/collegeController");
+
 
 //===================================================[COLLEGE ROUTE HANDLER]===========================================================
 
